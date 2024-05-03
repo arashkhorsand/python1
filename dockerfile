@@ -18,7 +18,6 @@ FROM python:3.8-slim
 WORKDIR /app
 
 # Copy only the necessary files from the builder stage
-COPY --from=builder /root/.cache /root/.cache
 COPY --from=builder /usr/local /usr/local
 COPY . .
 
