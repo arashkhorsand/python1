@@ -1,38 +1,35 @@
 from flask import Flask, request, render_template_string
 
-# Create a Flask application
 app = Flask(__name__)
 
-# HTML template for the homepage
-HTML_TEMPLATE = """
+# HTML template for the webpage
+HTML_TEMPLATE = '''
 <!doctype html>
 <html lang="en">
 <head>
-  <title>Hello World</title>
+  <meta charset="utf-8">
+  <title>Word Counter</title>
 </head>
 <body>
   <h1>Hello World</h1>
   <form method="post">
-    <label for="user_input">Enter text:</label>
-    <input type="text" id="user_input" name="user_input">
-    <button type="submit">Count Words</button>
+    <textarea name="text" rows="5" cols="30"></textarea><br>
+    <input type="submit" value="Count Words">
   </form>
   {% if word_count is not none %}
-    <p>Word Count: {{ word_count }}</p>
+  <h2>Word Count: {{ word_count }}</h2>
   {% endif %}
 </body>
 </html>
-"""
+'''
 
-# Route for handling the root path
 @app.route('/', methods=['GET', 'POST'])
 def index():
     word_count = None
     if request.method == 'POST':
-        text = request.form.get('user_input', '')
+        text = request.form['text']
         word_count = len(text.split())
     return render_template_string(HTML_TEMPLATE, word_count=word_count)
 
-# Run the application
 if __name__ == '__main__':
     app.run(debug=True)
