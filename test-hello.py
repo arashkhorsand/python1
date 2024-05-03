@@ -11,7 +11,7 @@ HTML_TEMPLATE = """
   <title>Hello World</title>
 </head>
 <body>
-  <h1>Hello World!</h1>
+  <h1>Hello World</h1>
   <form method="post">
     <label for="user_input">Enter text:</label>
     <input type="text" id="user_input" name="user_input">
